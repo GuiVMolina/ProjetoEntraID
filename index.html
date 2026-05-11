@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EntraID - Lab - Command Center</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kjur.github.io/jsrsasign/jsrsasign-all-min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="titulo">Microsoft <span>EntraID</span></h1>
+      <p>Identity command center - SENAI Lab</p>
+    </header>
+    <main class="main">
+      <div class="card">
+        <h2>PASSO 1: Emissão de Token (Authority)</h2>
+        <div class="campo_input">
+          <label class="label">Nome do Usuário (Claim: Name)</label>
+          <input
+            class="input"
+            type="text"
+            id="enc_name"
+            placeholder="Ex: Admin_SENAI"
+            value="Admin_SENAI"
+          />
+        </div>
+        <div class="campo_input">
+          <label class="label">Função Administrativa (Claim: Roles)</label>
+          <select class="select" id="enc_role">
+            <option value="Global.admin">Global.admin (Acesso Total)</option>
+            <option value="Standard.User">
+              Standard.User (Acesso Limitado)
+            </option>
+          </select>
+        </div>
+        <div class="campo_input">
+          <label class="label">Chave Privada de Assinatura (Secret Key)</label>
+          <input
+            class="input"
+            type="text"
+            id="enc_key"
+            placeholder="senai_top_secret_2026"
+            value="senai_top_secret_2026"
+          />
+        </div>
+        <button class="btn" onclick="generateToken()">
+          Criptografar e Assinar Token
+        </button>
+        <label class="">Token Bearer Gerado (JWT)</label>
+        <div class="textarea" id="generated_token"></div>
+      </div>
+      <div class="card">
+        <div class="campo_input">
+          <h2>PASSO 2: Auditoria e Intercepção</h2>
+        </div>
+        <div class="campo_input">
+          <label class="label">Token recebido via Header HTTP</label>
+          <textarea
+            class="textarea"
+            id="dec_input"
+            rows="6"
+            placeholder="Cole o token aqui para validar..."
+          ></textarea>
+        </div>
+        <button class="btn2" onclick="verifyToken()">
+          Validar Assinatura e Claims
+        </button>
+        <div id="status_box">
+          <span id="status_icon"></span>
+          <span id="status_msg"></span>
+        </div>
+        <h3>Dados decodificados (Payload):</h3>
+        <pre class="textarea" id="dec_output">{}</pre>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
