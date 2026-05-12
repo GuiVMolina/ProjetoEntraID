@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
 
 :root {
-  --verde: hsl(135, 50%, 35%);
+  --verde: rgb(45, 134, 67);
   --azul-escuro: rgb(0, 12, 24);
   --azul: rgb(0, 24, 48);
   --ciano: rgb(0, 255, 255);
